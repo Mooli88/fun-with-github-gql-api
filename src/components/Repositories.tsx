@@ -10,19 +10,16 @@ const columns = [
 		title: 'Name',
 		dataIndex: 'name',
 		key: 'name',
-		// render: (text: string) => <a>{text}</a>,
 	},
 	{
 		title: '⭐ Stars',
 		dataIndex: 'stargazerCount',
 		key: 'stargazerCount',
-		// render: (text: string) => <a>{text}</a>,
 	},
 	{
 		title: '🍴 Fork Count',
 		dataIndex: 'forkCount',
 		key: 'forkCount',
-		// render: (text: string) => <a>{text}</a>,
 	},
 	{
 		title: 'Topics',
@@ -41,17 +38,6 @@ const columns = [
 interface Props {}
 
 const Repositories: React.FC<Props> = (props) => {
-	// const { data, error, loading, refetch, fetchMore } = useQuery<{ search: IReposData }, IReposVars>(GET_REPOS, {
-	// 	variables: {
-	// 		query: 're language:JavaScript stars:>10000 sort:stars',
-	// 	},
-	// 	onCompleted({ search }) {
-	// 		console.log('onCompleted -> search', search.edges[0].node.name);
-	// 	},
-	// 	onError(err) {
-	// 		console.log('onError -> err', err);
-	// 	},
-	// });
 	const { data, error, loading, refetch, fetchMore } = useReposQuery();
 
 	const mapDataSource = () =>
@@ -84,8 +70,8 @@ const Repositories: React.FC<Props> = (props) => {
 				<Table {...{ columns, dataSource }} />
 			</Spin>
 			{dataSource?.length && (
-				<Button type='primary' loading={loading} onClick={fetchMore}>
-					Load More! {repositoryCount}/ {repositoryCount - dataSource.length}
+				<Button type='primary' loading={loading} onClick={fetchMore} disabled={!pageInfo.hasNextPage}>
+					Load More! {dataSource.length}/{repositoryCount}
 				</Button>
 			)}
 		</div>
