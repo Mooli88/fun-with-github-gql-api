@@ -1,41 +1,41 @@
 export interface IReposVars {
-	query: string;
-	last?: number;
-	cursor?: string;
+  query: string;
+  last?: number;
+  cursor?: string;
 }
 
 export interface IPageInfo {
-	endCursor: string;
-	startCursor: string;
-	hasNextPage: boolean;
+  endCursor: string;
+  startCursor: string;
+  hasNextPage: boolean;
 }
 
 export interface ITopic {
-	name: string;
+  name: string;
 }
 
 export interface IRepoTopics {
-	nodes: {
-		topic: ITopic;
-	}[];
+  nodes: {
+    topic: ITopic;
+  }[];
 }
 
 export interface IRepoNode {
-	name: string;
-	forkCount: number;
-	stargazerCount: number;
-	repositoryTopics: IRepoTopics;
+  name: string;
+  forkCount: number;
+  stargazerCount: number;
+  repositoryTopics: IRepoTopics;
 }
 
 export interface IEdge {
-	cursor: string;
-	node: IRepoNode;
-	__typename: 'Repository';
+  cursor: string;
+  node: IRepoNode;
+  __typename: 'Repository';
 }
 
 export interface IReposData {
-	repositoryCount: number;
-	pageInfo: IPageInfo;
-	edges: IEdge[];
-	__typename: 'SearchResultItemConnection';
+  repositoryCount: number;
+  pageInfo: IPageInfo;
+  edges: IEdge[];
+  __typename: 'SearchResultItemConnection';
 }
